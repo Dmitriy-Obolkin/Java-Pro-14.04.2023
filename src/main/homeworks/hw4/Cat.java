@@ -1,7 +1,7 @@
 package src.main.homeworks.hw4;
 
 public class Cat extends Animal {
-    /*У нашего типа животного "кот" есть свои ограничение на бег и плавание,
+    /*У нашего типа животного "Cat" есть свои ограничение на бег и плавание,
     * они вынесены в static final поля, чтобы при необходимости переписать им значение,
     * не искать каждое их упоминание в классе.*/
     private static final int MAX_RUN_DISTANCE = 200;
@@ -20,44 +20,17 @@ public class Cat extends Animal {
     }
 
 
+    @Override
+    int getMaxRunDistance() {
+        return MAX_RUN_DISTANCE;
+    }
+    @Override
+    int getMaxSwimDistance() {
+        return MAX_SWIM_DISTANCE;
+    }
+
     public String getName() {
         return name;
-    }
-
-    /*Обязательное переопределение методов run() и swim() из базового класса,
-    * но с собственными ограничениями класса Cat*/
-    @Override
-    public void run(int distance) {
-        //Выкинуть исключение, если переданное значение дистанции <= 0
-        if(distance <= 0){
-            throw new IllegalArgumentException("The distance must be a positive number!");
-        }
-
-        /*Проверить условие, может ли кот пробежать заданное растояние,
-        и вывести соответствующее сообщение*/
-        if(distance <= MAX_RUN_DISTANCE){
-            System.out.println(this + " ran " + distance + " meters!");
-        }
-        else{
-            System.out.println(this + " can\'t run " + distance + " meters!");
-        }
-    }
-
-    @Override
-    public void swim(int distance) {
-        //Выкинуть исключение, если переданное значение дистанции <= 0
-        if(distance <= 0){
-            throw new IllegalArgumentException("The distance must be a positive number!");
-        }
-
-        /*Проверить условие, может ли кот проплыть заданное растояние,
-        и вывести соответствующее сообщение*/
-        if(distance <= MAX_SWIM_DISTANCE){
-            System.out.println(this + " swam " + distance + " meters!");
-        }
-        else{
-            System.out.println(this + " can\'t swam " + distance + " meters!");
-        }
     }
 
     /*Метод getCatCounter() статический, потому что он связан
@@ -72,4 +45,5 @@ public class Cat extends Animal {
     public String toString() {
         return "Cat " + getName();
     }
+
 }

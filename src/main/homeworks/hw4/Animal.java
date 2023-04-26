@@ -8,23 +8,47 @@ public abstract class Animal {
     /*Статическое поле animalCounter будет пренадлежать всему классу, а не его экземплярам-наследникам,
     * таким образом реализуется счётчик всех созданных животных.*/
     private static int animalCounter = 0;
+
+
     public Animal(){
         animalCounter++;    //Увеличить счётчик при каждом создании объекта-наследника класса Animal
     }
 
-    /*Поведения животного: бежать и плыть зависят от конкретного типа животного,
-    * поэтому абстрактные методы run() и swim() не имеют реализации в базвом классе,
-    * но предполагают переопределение в классах-наследниках в соответствии с ограничениями.
-    * (Можно было бы сделать их булевыми, но под текущую задачу это лишнее, а вот в ДЗ 5
-    * это может иметь место быть)*/
-    public abstract void run(int distance);
-    public abstract  void swim(int distance);
+    /*Абстрактные методы getMaxRunDistance() и getMaxSwimDistance() обязывают наследников
+    * имплиментировать у себя эти методы, это сделано для реализации условия,
+    * что все животные могут бегать и плавать, и в то же время позволяет один раз написать
+    * реализацию методов run() и swim(), при этом учитывая максимально возможную дистанцию
+    * для каждого вида животного.*/
+    abstract int getMaxRunDistance();
+    abstract int getMaxSwimDistance();
+    protected void run(int distance){
+        //Выкинуть исключение, если переданное значение дистанции <= 0
+        if(distance <= 0){
+            throw new IllegalArgumentException("The distance must be a positive number!");
+        }
 
-    /*От себя добавил неабстрактный метод с дефолтной реализацией,
-    * посмотреть на его примере переопределение в классе-наследнике
-    * и вызов без переопределения*/
-    public void eat(){
-        System.out.println("The animal is eating");
+        /*Проверить условие, может ли животное пробежать заданное растояние,
+        и вывести соответствующее сообщение*/
+        if(distance <= getMaxRunDistance()){
+            System.out.println(this + " ran " + distance + " meters!");
+        }
+        else{
+            System.out.println(this + " can't run " + distance + " meters!");
+        }
+    }
+    protected void swim(int distance){
+        //Выкинуть исключение, если переданное значение дистанции <= 0
+        if(distance <= 0){
+            throw new IllegalArgumentException("The distance must be a positive number!");
+        }
+        /*Проверить условие, может ли животное проплыть заданное растояние,
+        и вывести соответствующее сообщение*/
+        if(distance <= getMaxSwimDistance()){
+            System.out.println(this + " swam " + distance + " meters!");
+        }
+        else{
+            System.out.println(this + " can't swam " + distance + " meters!");
+        }
     }
 
     /*Метод getAnimalCounter() статический, потому что он связан
