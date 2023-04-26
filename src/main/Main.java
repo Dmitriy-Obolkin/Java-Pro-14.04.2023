@@ -6,7 +6,7 @@ import src.main.homeworks.hw2.Employee;
 public class Main {
     public static void main(String[] args){
 
-        demoHW2();
+        //demoHW2();
     }
 
 
