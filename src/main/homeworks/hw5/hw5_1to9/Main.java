@@ -1,6 +1,7 @@
 package src.main.homeworks.hw5.hw5_1to9;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -28,11 +29,29 @@ public class Main {
         obstacles.add(new RunningTrack(500));
         //obstacles.add(new Wall(2));
         obstacles.add(new RunningTrack(1000));
+        obstacles.add(new RunningTrack(2000));
         //obstacles.add(new Wall(3));
 
 
+        /*Сначала все учасники подходят к первому препятствию и проходят его по очереди,
+        * в случае успешного прохождения - этот участник переходит к следующему препятствию*/
         for (Obstacle obstacle : obstacles){
-            System.out.println("Participants approach the obstacle " + obstacle);
+            System.out.println("Participants approach the obstacle " + obstacle + ".");
+            System.out.println();
+            Iterator<Member> iteratorMembers = members.iterator();
+
+            while (iteratorMembers.hasNext()) {
+                Member member = iteratorMembers.next();
+                System.out.println("Participant " + member + " begins to pass the obstacle " + obstacle + ".");
+                if (!obstacle.overcome(member)) {
+                    System.out.println("Participant " + member + " drops out of the series of obstacles!");
+                    iteratorMembers.remove();
+                    member.rest();
+                }
+                System.out.println();
+            }
+
+            System.out.println();
         }
 
     }

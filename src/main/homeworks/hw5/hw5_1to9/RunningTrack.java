@@ -14,10 +14,10 @@ public class RunningTrack implements Obstacle{
     @Override
     public boolean overcome(Member member) {
         if (member.run(getLength())) {
-            System.out.println(member + " successfully overcame the obstacle of the " + this + "!");
+            System.out.println("+" + member + " successfully overcame the obstacle of the " + this + "!");
             return true;
         } else {
-            System.out.println(member + " could not overcome the obstacle of the " + this + "!");
+            System.out.println("-" + member + " could not overcome the obstacle of the " + this + "!");
             return false;
         }
     }

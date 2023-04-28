@@ -55,7 +55,6 @@ public abstract class Member implements Rest{
         }
         else {
             System.out.println(this + " cannot run a distance of: " + distance + " meters!");
-            this.rest();
             return false;
         }
     }
