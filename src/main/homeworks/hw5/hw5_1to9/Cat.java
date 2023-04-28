@@ -9,4 +9,10 @@ public class Cat extends Member{
     public String toString() {
         return "Cat " + getName();
     }
+
+    @Override
+    public void rest() {
+        super.rest();
+        System.out.println(this + " went to bed. Stamina restored to maximum!");
+    }
 }

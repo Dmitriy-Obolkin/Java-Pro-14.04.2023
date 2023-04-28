@@ -1,6 +1,6 @@
 package src.main.homeworks.hw5.hw5_1to9;
 
-public class Human extends Member implements Rest{
+public class Human extends Member{
     public int age;
 
     public Human(String name, int age, int maxRunDistance, int maxJumpHeight){
@@ -14,11 +14,12 @@ public class Human extends Member implements Rest{
 
     @Override
     public void rest() {
-        //отдыхать
+        super.rest();
+        System.out.println(this + " went to watch TV. Stamina restored to maximum!");
     }
 
     @Override
     public String toString() {
-        return "Human " + getName() + ", " + getAge() + "years old";
+        return "Human " + getName() + ", " + getAge() + " years old ";
     }
 }

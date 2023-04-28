@@ -1,6 +1,6 @@
 package src.main.homeworks.hw5.hw5_1to9;
 
-public class Robot extends Member implements Rest{
+public class Robot extends Member{
     public int power;
 
     public Robot(String name, int power, int maxRunDistance, int maxJumpHeight) {
@@ -14,7 +14,8 @@ public class Robot extends Member implements Rest{
 
     @Override
     public void rest() {
-        //заряжаться
+        super.rest();
+        System.out.println(this + " went to charge. Stamina restored to maximum!");
     }
 
     @Override

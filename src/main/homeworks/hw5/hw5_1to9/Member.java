@@ -1,11 +1,19 @@
 package src.main.homeworks.hw5.hw5_1to9;
 
-public abstract class Member {
+public abstract class Member implements Rest{
 
+    /*Поле maxRunDistance - это максимально возможное расстояние,
+    * на которое может пробежать учасник без отдыха, с ним связанно поле stamina,
+    * оно будет тратится динамически по мере того, сколько
+    * препятствий "Беговая дорожка" прошёл учасник за один подход,
+    * и восстанавливаться после отдыха*/
+    protected final int maxRunDistance;
+    private int stamina;
+    /*maxJumpHeight - это просто максимальная высота, на которую
+    * может прыгнуть учасник*/
+    protected final int maxJumpHeight;
 
-    protected int maxRunDistance;
-    protected int maxJumpHeight;
-    public String name;
+    public final String name;
 
     public Member(String name, int maxRunDistance, int maxJumpHeight) {
         this.name = name;
@@ -22,26 +30,33 @@ public abstract class Member {
     public String getName() {
         return name;
     }
+    public int getStamina() {
+        return stamina;
+    }
+    /*Закрыть доступ к случайному изменению поля*/
+    private void setStamina(int stamina) {
+        if(stamina <= 0){
+            throw new IllegalArgumentException("The stamina must be a positive number!");
+        }
+        this.stamina = stamina;
+    }
 
-    private void setMaxRunDistance(int maxRunDistance) {
-        this.maxRunDistance = maxRunDistance;
-    }
-    private void setMaxJumpHeight(int maxJumpHeight) {
-        this.maxJumpHeight = maxJumpHeight;
-    }
 
     public void run(int distance){
         if(distance <= 0){
             throw new IllegalArgumentException("The distance must be a positive number!");
         }
 
-        if(distance <= getMaxRunDistance()){
-            System.out.println(this + " runs for a distance of: " + distance + " meters");
+        if(distance <= getStamina()){
+            System.out.println(this + " runs for a distance of: " + distance + " meters!");
         }
         else {
-            System.out.println(this + " cannot run a distance of: " + distance + " meters");
+            System.out.println(this + " cannot run a distance of: " + distance + " meters "
+            + "and goes to rest");
+            this.rest();
         }
     }
+    /*Прыжок зависит только от максимальной высоты, на которую может прыгнуть учасник*/
     public void jump(int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("The height must be a positive number!");
@@ -52,6 +67,12 @@ public abstract class Member {
         } else {
             System.out.println(this + " cannot jumps to a height of: " + height + " meters");
         }
+    }
+
+
+    @Override
+    public void rest(){
+        this.setStamina(getMaxRunDistance());
     }
 
 }
