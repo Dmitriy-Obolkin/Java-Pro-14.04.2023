@@ -55,7 +55,7 @@ public class Main {
         for (Member member : testMembers) {
             uniqueMembers.add(member.getClass().getSimpleName());
         }
-        if(uniqueMembers.stream().count() == 1 && uniqueMembers.stream().findFirst().orElse(null).equals("Robot")){
+        if(uniqueMembers.size() == 1 && uniqueMembers.stream().findFirst().orElse(null).equals("Robot")){
             System.out.println("The machines have won!!!");
         }
         else{
