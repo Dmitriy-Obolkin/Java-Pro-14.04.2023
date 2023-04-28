@@ -13,9 +13,12 @@ public class Robot extends Member{
     }
 
     @Override
-    public void rest() {
-        super.rest();
-        System.out.println(this + " went to charge. Stamina restored to maximum!");
+    public boolean rest() {
+        if (super.rest()){
+            System.out.println(this + " went to charge. Stamina restored to maximum!");
+            return true;
+        }
+        return false;
     }
 
     @Override

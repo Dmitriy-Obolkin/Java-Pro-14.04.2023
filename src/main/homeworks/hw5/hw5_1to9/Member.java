@@ -19,6 +19,7 @@ public abstract class Member implements Rest{
         this.name = name;
         this.maxRunDistance = maxRunDistance;
         this.maxJumpHeight = maxJumpHeight;
+        this.setStamina(getMaxRunDistance());
     }
 
     public int getMaxRunDistance() {
@@ -49,10 +50,10 @@ public abstract class Member implements Rest{
 
         if(distance <= getStamina()){
             System.out.println(this + " runs for a distance of: " + distance + " meters!");
+            stamina -= distance;
         }
         else {
-            System.out.println(this + " cannot run a distance of: " + distance + " meters "
-            + "and goes to rest");
+            System.out.println(this + " cannot run a distance of: " + distance + " meters!");
             this.rest();
         }
     }
@@ -71,8 +72,14 @@ public abstract class Member implements Rest{
 
 
     @Override
-    public void rest(){
-        this.setStamina(getMaxRunDistance());
+    public boolean rest(){
+        if(getStamina() < getMaxRunDistance()){
+            this.setStamina(getMaxRunDistance());
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }

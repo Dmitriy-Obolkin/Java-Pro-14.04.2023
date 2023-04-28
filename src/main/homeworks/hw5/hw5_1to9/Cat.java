@@ -11,8 +11,11 @@ public class Cat extends Member{
     }
 
     @Override
-    public void rest() {
-        super.rest();
-        System.out.println(this + " went to bed. Stamina restored to maximum!");
+    public boolean rest() {
+        if (super.rest()){
+            System.out.println(this + " went to bed. Stamina restored to maximum!");
+            return true;
+        }
+        return false;
     }
 }

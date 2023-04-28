@@ -13,9 +13,12 @@ public class Human extends Member{
     }
 
     @Override
-    public void rest() {
-        super.rest();
-        System.out.println(this + " went to watch TV. Stamina restored to maximum!");
+    public boolean rest() {
+        if (super.rest()){
+            System.out.println(this + " went to watch TV. Stamina restored to maximum!");
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -13,10 +13,12 @@ public class Main {
         members.add(new Human("Kate", 21, 5000, 3));
         members.add(new Cat("Mia",300, 1));
 
-        for (Member member : members) {
+        /*for (Member member : members) {
+            System.out.println("Stamina: " + member.getStamina());
             member.run(800);
+            System.out.println("Stamina: " + member.getStamina());
             member.jump(2);
             System.out.println();
-        }
+        }*/
     }
 }
