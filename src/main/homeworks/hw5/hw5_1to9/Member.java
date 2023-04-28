@@ -66,10 +66,10 @@ public abstract class Member implements Rest{
         }
 
         if (height <= getMaxJumpHeight()) {
-            System.out.println(this + " jumps to a height of: " + height + " meters");
+            System.out.println(this + " jumps to a height of: " + height + " meters!");
             return true;
         } else {
-            System.out.println(this + " cannot jumps to a height of: " + height + " meters");
+            System.out.println(this + " cannot jumps to a height of: " + height + " meters!");
             return false;
         }
     }

@@ -21,6 +21,19 @@ public class Main {
             System.out.println();
         }*/
 
+        List<Obstacle> obstacles = new ArrayList<>();
+
+        obstacles.add(new RunningTrack(100));
+        //obstacles.add(new Wall(1));
+        obstacles.add(new RunningTrack(500));
+        //obstacles.add(new Wall(2));
+        obstacles.add(new RunningTrack(1000));
+        //obstacles.add(new Wall(3));
+
+
+        for (Obstacle obstacle : obstacles){
+            System.out.println("Participants approach the obstacle " + obstacle);
+        }
 
     }
 }
