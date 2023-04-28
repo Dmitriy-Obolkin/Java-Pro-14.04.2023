@@ -20,5 +20,7 @@ public class Main {
             member.jump(2);
             System.out.println();
         }*/
+
+
     }
 }

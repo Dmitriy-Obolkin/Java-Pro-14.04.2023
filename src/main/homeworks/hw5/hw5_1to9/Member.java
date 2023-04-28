@@ -34,7 +34,7 @@ public abstract class Member implements Rest{
     public int getStamina() {
         return stamina;
     }
-    /*Закрыть доступ к случайному изменению поля*/
+    /*Закрыть доступ к случайному изменению поля stamina*/
     private void setStamina(int stamina) {
         if(stamina <= 0){
             throw new IllegalArgumentException("The stamina must be a positive number!");
@@ -43,7 +43,7 @@ public abstract class Member implements Rest{
     }
 
 
-    public void run(int distance){
+    public boolean run(int distance){
         if(distance <= 0){
             throw new IllegalArgumentException("The distance must be a positive number!");
         }
@@ -51,22 +51,26 @@ public abstract class Member implements Rest{
         if(distance <= getStamina()){
             System.out.println(this + " runs for a distance of: " + distance + " meters!");
             stamina -= distance;
+            return true;
         }
         else {
             System.out.println(this + " cannot run a distance of: " + distance + " meters!");
             this.rest();
+            return false;
         }
     }
     /*Прыжок зависит только от максимальной высоты, на которую может прыгнуть учасник*/
-    public void jump(int height) {
+    public boolean jump(int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("The height must be a positive number!");
         }
 
         if (height <= getMaxJumpHeight()) {
             System.out.println(this + " jumps to a height of: " + height + " meters");
+            return true;
         } else {
             System.out.println(this + " cannot jumps to a height of: " + height + " meters");
+            return false;
         }
     }
 
