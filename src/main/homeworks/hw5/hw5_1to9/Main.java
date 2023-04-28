@@ -1,11 +1,10 @@
 package src.main.homeworks.hw5.hw5_1to9;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
         List<Member> members = new ArrayList<>();
 
         members.add(new Human("John",25,1500, 1));
@@ -14,13 +13,7 @@ public class Main {
         members.add(new Human("Kate", 21, 5000, 3));
         members.add(new Cat("Mia",300, 1));
 
-        /*for (Member member : members) {
-            System.out.println("Stamina: " + member.getStamina());
-            member.run(800);
-            System.out.println("Stamina: " + member.getStamina());
-            member.jump(2);
-            System.out.println();
-        }*/
+
 
         List<Obstacle> obstacles = new ArrayList<>();
 
@@ -31,15 +24,17 @@ public class Main {
         obstacles.add(new RunningTrack(1000));
         obstacles.add(new RunningTrack(2000));
         obstacles.add(new Wall(3));
+        obstacles.add(new RunningTrack(5000));
 
 
         /*Сначала все учасники подходят к первому препятствию и проходят его по очереди,
         * в случае успешного прохождения - этот участник переходит к следующему препятствию*/
+        List<Member> testMembers = new ArrayList<>(members);
         for (Obstacle obstacle : obstacles){
             System.out.println();
             System.out.println("Participants approach the obstacle " + obstacle + ".");
             System.out.println();
-            Iterator<Member> iteratorMembers = members.iterator();
+            Iterator<Member> iteratorMembers = testMembers.iterator();
 
             while (iteratorMembers.hasNext()) {
                 Member member = iteratorMembers.next();
@@ -51,8 +46,25 @@ public class Main {
                 }
                 System.out.println();
             }
-
             System.out.println();
+        }
+
+
+        /*Вывести результат о прохождении испытаний*/
+        Set<String> uniqueMembers = new HashSet<>();
+        for (Member member : testMembers) {
+            uniqueMembers.add(member.getClass().getSimpleName());
+        }
+        if(uniqueMembers.stream().count() == 1 && uniqueMembers.stream().findFirst().orElse(null).equals("Robot")){
+            System.out.println("The machines have won!!!");
+        }
+        else{
+            System.out.println("List of participants who passed all the tests: ");
+            int i = 1;
+            for (Member member : testMembers) {
+                System.out.println(i + ". " + member + "!");
+                i++;
+            }
         }
 
     }
