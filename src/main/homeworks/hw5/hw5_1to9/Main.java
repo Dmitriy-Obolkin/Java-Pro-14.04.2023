@@ -25,17 +25,18 @@ public class Main {
         List<Obstacle> obstacles = new ArrayList<>();
 
         obstacles.add(new RunningTrack(100));
-        //obstacles.add(new Wall(1));
+        obstacles.add(new Wall(1));
         obstacles.add(new RunningTrack(500));
-        //obstacles.add(new Wall(2));
+        obstacles.add(new Wall(2));
         obstacles.add(new RunningTrack(1000));
         obstacles.add(new RunningTrack(2000));
-        //obstacles.add(new Wall(3));
+        obstacles.add(new Wall(3));
 
 
         /*Сначала все учасники подходят к первому препятствию и проходят его по очереди,
         * в случае успешного прохождения - этот участник переходит к следующему препятствию*/
         for (Obstacle obstacle : obstacles){
+            System.out.println();
             System.out.println("Participants approach the obstacle " + obstacle + ".");
             System.out.println();
             Iterator<Member> iteratorMembers = members.iterator();
