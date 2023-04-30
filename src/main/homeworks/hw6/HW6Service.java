@@ -1,4 +1,5 @@
 package src.main.homeworks.hw6;
+import java.time.Year;
 
 public class HW6Service {
     //2
@@ -86,5 +87,10 @@ public class HW6Service {
         } else {
             return false;
         }
+    }
+
+    //10_2
+    public static boolean isLeapYear2(int year){
+        return Year.of(year).isLeap();
     }
 }

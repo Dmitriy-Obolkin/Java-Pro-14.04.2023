@@ -44,5 +44,6 @@ public class HomeWorkApp {
         (високосний – true, не високосний – false). Кожен 4-й рік є високосним, крім кожного 100-го,
         причому кожен 400-й – високосний.*/
         System.out.println(HW6Service.isLeapYear(1600));
+        System.out.println(HW6Service.isLeapYear2(1745));
     }
 }
