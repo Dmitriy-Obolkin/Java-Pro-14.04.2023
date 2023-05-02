@@ -22,8 +22,7 @@ public class HW7Service {
     //3
     public static int findWordPosition(String source, String target) {
         System.out.println("\n3:");
-        int index = source.indexOf(target);
-        return index;
+        return source.indexOf(target);
     }
 
     //4
@@ -102,7 +101,7 @@ public class HW7Service {
                 System.out.println("Hint: " + hint);
             }
         }
-        while (!userAnswer.toLowerCase().equals(secretWord.toLowerCase()));
+        while (!userAnswer.equalsIgnoreCase(secretWord));
 
         sc.close();
     }
