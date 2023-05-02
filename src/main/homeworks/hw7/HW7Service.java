@@ -23,11 +23,7 @@ public class HW7Service {
     public static int findWordPosition(String source, String target) {
         System.out.println("\n3:");
         int index = source.indexOf(target);
-        if (index != -1) {
-            return index;
-        } else {
-            return -1;
-        }
+        return index;
     }
 
     //4
@@ -84,7 +80,7 @@ public class HW7Service {
         System.out.println("\n6:");
 
         String secretWord = getRandomWord(words);
-        String userAnswer = new String();
+        String userAnswer;
         Scanner sc = new Scanner(System.in);
         StringBuilder hint = new StringBuilder("###############");
 
@@ -106,7 +102,7 @@ public class HW7Service {
                 System.out.println("Hint: " + hint);
             }
         }
-        while (userAnswer != secretWord);
+        while (!userAnswer.toLowerCase().equals(secretWord.toLowerCase()));
 
         sc.close();
     }
