@@ -30,8 +30,7 @@ public class FileLoggerConfiguration {
         return filePath;
     }
     public void setFilePath(String filePath) {
-        String newFile = generateLogFileName(filePath);
-        this.filePath = newFile;
+        this.filePath = generateLogFileName(filePath);
     }
     public LoggingLevel getLoggingLevel() {
         return loggingLevel;

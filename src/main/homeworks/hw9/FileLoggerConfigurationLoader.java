@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class FileLoggerConfigurationLoader {
 
@@ -37,18 +35,10 @@ public class FileLoggerConfigurationLoader {
             while ((line = reader.readLine()) != null) {
                 String[] keyValue = line.split(": ");
                 switch (keyValue[0]) {
-                    case "FILE":
-                        file = keyValue[1];
-                        break;
-                    case "LEVEL":
-                        loggingLevel = LoggingLevel.valueOf(keyValue[1]);
-                        break;
-                    case "MAX-SIZE":
-                        maxFileSize = Long.parseLong(keyValue[1]);
-                        break;
-                    case "FORMAT":
-                        logFormat = keyValue[1];
-                        break;
+                    case "FILE" -> file = keyValue[1];
+                    case "LEVEL" -> loggingLevel = LoggingLevel.valueOf(keyValue[1]);
+                    case "MAX-SIZE" -> maxFileSize = Long.parseLong(keyValue[1]);
+                    case "FORMAT" -> logFormat = keyValue[1];
                 }
             }
         }

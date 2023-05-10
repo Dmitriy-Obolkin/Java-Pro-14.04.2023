@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileLogger {
-    private FileLoggerConfiguration configuration;
+    private final FileLoggerConfiguration configuration;
 
 
     public FileLogger(FileLoggerConfiguration configuration) {

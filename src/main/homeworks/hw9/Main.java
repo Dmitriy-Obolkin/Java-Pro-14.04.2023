@@ -1,10 +1,10 @@
 package src.main.homeworks.hw9;
 
 import java.io.IOException;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Main {
-    private static final String HOME = System.getProperty("user.home");
+
     public static void main(String[] args) {
         FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
         try {
