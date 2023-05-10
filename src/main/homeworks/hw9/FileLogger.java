@@ -42,16 +42,19 @@ public class FileLogger {
     */
     private void log(String level, String message)
             throws FileMaxSizeReachedException, IOException {
-
-        Path projectRoot = Paths.get(System.getProperty("user.dir"));
-        Path path = projectRoot.resolve(configuration.getFilePath());
+        Path path = Paths.get(System.getProperty("user.dir")).resolve(configuration.getFilePath());
         long fileSize = Files.exists(path) ? Files.size(path) : 0;
 
-        if (fileSize >= configuration.getMaxFileSize()) {
-            throw new FileMaxSizeReachedException(
-                    String.format("The log file reached the maximum size: %d bytes. Current size: %d bytes. File path: %s.",
-                            configuration.getMaxFileSize(), fileSize, configuration.getFilePath()));
+        try{
+            if (fileSize >= configuration.getMaxFileSize()) {
+                throw new FileMaxSizeReachedException(
+                        String.format("The log file reached the maximum size: %d bytes. Current size: %d bytes. File path: %s.",
+                                configuration.getMaxFileSize(), fileSize, configuration.getFilePath()));
+            }
+        } catch (FileMaxSizeReachedException e){
+            createNewLogFile();
         }
+
 
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String logMessage = String.format(configuration.getLogFormat(), currentTime, level, message);
@@ -81,6 +84,14 @@ public class FileLogger {
             writer.write(logMessage);
             writer.newLine();
         }
+    }
+
+    /*6. ** При досягненні максимального розміру файлу або його перевищенні,
+    створювати новий (додатковий) файл для зберігання . Ім'я кожного нового файлу
+    має містити дату створення.*/
+    public void createNewLogFile(){
+        Path path = Paths.get(System.getProperty("user.dir")).resolve(configuration.getFilePath());
+        configuration.setFilePath(path.getParent().toString());
     }
 
 }

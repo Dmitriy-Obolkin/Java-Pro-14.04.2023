@@ -15,6 +15,8 @@ public class FileLoggerConfiguration {
     private LoggingLevel loggingLevel;
     private long maxFileSize;
     private String logFormat;
+    private int logsCount = 0;
+
 
 
     public FileLoggerConfiguration(String filePath, LoggingLevel loggingLevel,
@@ -53,12 +55,19 @@ public class FileLoggerConfiguration {
     public void setLogFormat(String logFormat) {
         this.logFormat = logFormat;
     }
+    public int getLogsCount() {
+        return logsCount;
+    }
+    public void setLogsCount(int logsCount) {
+        this.logsCount = logsCount;
+    }
 
 
     private String generateLogFileName(String basePath) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy_HH.mm.ss");
         String timestamp = sdf.format(new Date());
-        return String.format("%s/Log_%s_%s.txt", basePath, getLoggingLevel(), timestamp);
+        setLogsCount(getLogsCount()+1);
+        return String.format("%s/Log_%s_%s_%s.txt", basePath, getLoggingLevel(), timestamp, getLogsCount());
     }
 
 }

@@ -1,7 +1,7 @@
 package src.main.homeworks.hw9;
 
 import java.io.IOException;
-//import java.util.Scanner;
+import java.util.Scanner;
 
 public class Main {
 
@@ -11,18 +11,19 @@ public class Main {
             FileLoggerConfiguration configuration = loader.load("logConfigs/hw9/FileConfig.txt");
             FileLogger logger = new FileLogger(configuration);
 
-            //Scanner sc = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
             int i = 1;
-            while(true){
-                logger.info("Informational message");
-                logger.debug("Debug message");
+            while(i < 50){
+                logger.info("Informational message " + i);
+                logger.debug(String.format("Debug message %s\n", i));
                 System.out.println("Iteration of the log entry: " + i);
                 i++;
-                //sc.nextLine();
+                sc.nextLine();
             }
 
         } catch (IOException | FileMaxSizeReachedException e) {
             e.printStackTrace();
         }
+
     }
 }
