@@ -1,0 +1,4 @@
+FILE: logs/hw9
+LEVEL: DEBUG
+MAX-SIZE: 500
+FORMAT: [%s] %s - %s
