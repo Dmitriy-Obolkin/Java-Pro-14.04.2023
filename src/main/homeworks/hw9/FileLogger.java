@@ -51,11 +51,20 @@ public class FileLogger {
             throw new FileMaxSizeReachedException(
                     String.format("The log file reached the maximum size: %d bytes. Current size: %d bytes. File path: %s.",
                             configuration.getMaxFileSize(), fileSize, configuration.getFilePath()));
-
         }
 
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String logMessage = String.format(configuration.getLogFormat(), currentTime, level, message);
+
+
+        /*Создать директорию для логов, если она не существует*/
+        if (!Files.exists(path.getParent())) {
+            try {
+                Files.createDirectories(path.getParent());
+            } catch (IOException e) {
+                throw new IOException();
+            }
+        }
 
         /*BufferedWriter - декоратор для Writer, повышает производительность за счёт
         * добавления беферизации.
