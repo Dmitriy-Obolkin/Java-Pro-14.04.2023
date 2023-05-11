@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class StdoutLogger implements Logger {
-    private StdoutLoggerConfiguration configuration;
+    private final StdoutLoggerConfiguration configuration;
 
     public StdoutLogger(StdoutLoggerConfiguration configuration) {
         this.configuration = configuration;
