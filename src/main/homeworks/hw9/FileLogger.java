@@ -30,21 +30,29 @@ public class FileLogger {
         }
     }
     public void info(String message) throws FileMaxSizeReachedException, IOException {
-        log(configuration.getLoggingLevel().toString(), message);
+        if(configuration.getLoggingLevel() == LoggingLevel.INFO || configuration.getLoggingLevel() == LoggingLevel.DEBUG){
+            log(configuration.getLoggingLevel().toString(), message);
+        }
     }
 
 
     /*4. При виконанні методів debug та info врахувати максимально допустимий розмір файлу,
     куди будуть записуватися логи.
-    При досягненні максимального розміру файлу або його перевищення, викинути виняток
-    FileMaxSizeReachedException з повідомленням максимального і поточного розміру файлу,
-    шляхи до файлу.
     */
     private void log(String level, String message)
             throws FileMaxSizeReachedException, IOException {
         Path path = Paths.get(System.getProperty("user.dir")).resolve(configuration.getFilePath());
         long fileSize = Files.exists(path) ? Files.size(path) : 0;
 
+        /* Тут должно быть какое-то одно из двух решений: создание файла или выброс FileMaxSizeReachedException,
+          * но в задании были поставлены оба эти условия:
+          *   4. При досягненні максимального розміру файлу або його перевищення, викинути виняток
+          * FileMaxSizeReachedException з повідомленням максимального і поточного розміру файлу,
+          * шляхи до файлу.
+          *   6. ** При досягненні максимального розміру файлу або його перевищенні,
+          * створювати новий (додатковий) файл для зберігання . Ім'я кожного нового файлу
+          * має містити дату створення.
+        */
         try{
             if (fileSize >= configuration.getMaxFileSize()) {
                 throw new FileMaxSizeReachedException(

@@ -31,34 +31,34 @@ public class FileLoggerConfiguration {
     public String getFilePath() {
         return filePath;
     }
-    public void setFilePath(String filePath) {
+    protected void setFilePath(String filePath) {
         this.filePath = generateLogFileName(filePath);
     }
     public LoggingLevel getLoggingLevel() {
         return loggingLevel;
     }
-    public void setLoggingLevel(LoggingLevel loggingLevel) {
+    protected void setLoggingLevel(LoggingLevel loggingLevel) {
         this.loggingLevel = loggingLevel;
     }
-    public void setLoggingLevel(String loggingLevel){
+    protected void setLoggingLevel(String loggingLevel){
         this.loggingLevel = LoggingLevel.valueOf(loggingLevel);
     }
     public long getMaxFileSize() {
         return maxFileSize;
     }
-    public void setMaxFileSize(long maxFileSize) {
+    protected void setMaxFileSize(long maxFileSize) {
         this.maxFileSize = maxFileSize;
     }
     public String getLogFormat() {
         return logFormat;
     }
-    public void setLogFormat(String logFormat) {
+    protected void setLogFormat(String logFormat) {
         this.logFormat = logFormat;
     }
     public int getLogsCount() {
         return logsCount;
     }
-    public void setLogsCount(int logsCount) {
+    protected void setLogsCount(int logsCount) {
         this.logsCount = logsCount;
     }
 

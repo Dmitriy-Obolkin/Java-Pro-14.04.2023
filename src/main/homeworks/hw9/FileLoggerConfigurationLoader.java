@@ -35,15 +35,41 @@ public class FileLoggerConfigurationLoader {
             while ((line = reader.readLine()) != null) {
                 String[] keyValue = line.split(": ");
                 switch (keyValue[0]) {
-                    case "FILE" -> file = keyValue[1];
-                    case "LEVEL" -> loggingLevel = LoggingLevel.valueOf(keyValue[1]);
-                    case "MAX-SIZE" -> maxFileSize = Long.parseLong(keyValue[1]);
-                    case "FORMAT" -> logFormat = keyValue[1];
+                    case "FILE" -> setFile(keyValue[1]);
+                    case "LEVEL" -> setLoggingLevel(LoggingLevel.valueOf(keyValue[1]));
+                    case "MAX-SIZE" -> setMaxFileSize(Long.parseLong(keyValue[1]));
+                    case "FORMAT" -> setLogFormat(keyValue[1]);
                 }
             }
         }
 
-        return new FileLoggerConfiguration(file, loggingLevel, maxFileSize, logFormat);
+        return new FileLoggerConfiguration(getFile(), getLoggingLevel(), getMaxFileSize(), getLogFormat());
+    }
+
+
+    public String getFile() {
+        return file;
+    }
+    private void setFile(String file) {
+        this.file = file;
+    }
+    public LoggingLevel getLoggingLevel() {
+        return loggingLevel;
+    }
+    private void setLoggingLevel(LoggingLevel loggingLevel) {
+        this.loggingLevel = loggingLevel;
+    }
+    public Long getMaxFileSize() {
+        return maxFileSize;
+    }
+    private void setMaxFileSize(Long maxFileSize) {
+        this.maxFileSize = maxFileSize;
+    }
+    public String getLogFormat() {
+        return logFormat;
+    }
+    private void setLogFormat(String logFormat) {
+        this.logFormat = logFormat;
     }
 
 
