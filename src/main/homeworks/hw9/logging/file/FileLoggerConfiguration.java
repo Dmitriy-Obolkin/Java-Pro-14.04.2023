@@ -1,4 +1,7 @@
-package src.main.homeworks.hw9;
+package src.main.homeworks.hw9.logging.file;
+
+import src.main.homeworks.hw9.logging.LoggerConfiguration;
+import src.main.homeworks.hw9.logging.LoggingLevel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,55 +13,34 @@ import java.util.Date;
     long maxFileSize - максимальний розмір файлу (в байтах),
     String logFormat - формат для запису в файл.
 */
-public class FileLoggerConfiguration {
+public class FileLoggerConfiguration extends LoggerConfiguration {
     private String filePath;
-    private LoggingLevel loggingLevel;
     private long maxFileSize;
-    private String logFormat;
     private int logsCount = 0;
-
-
 
     public FileLoggerConfiguration(String filePath, LoggingLevel loggingLevel,
                                    long maxFileSize, String logFormat) {
-        this.loggingLevel = loggingLevel;
+        super(loggingLevel, logFormat);
         this.setFilePath(filePath);
         this.maxFileSize = maxFileSize;
-        this.logFormat = logFormat;
     }
-
 
     public String getFilePath() {
         return filePath;
     }
-    public void setFilePath(String filePath) {
+    protected void setFilePath(String filePath) {
         this.filePath = generateLogFileName(filePath);
-    }
-    public LoggingLevel getLoggingLevel() {
-        return loggingLevel;
-    }
-    public void setLoggingLevel(LoggingLevel loggingLevel) {
-        this.loggingLevel = loggingLevel;
-    }
-    public void setLoggingLevel(String loggingLevel){
-        this.loggingLevel = LoggingLevel.valueOf(loggingLevel);
     }
     public long getMaxFileSize() {
         return maxFileSize;
     }
-    public void setMaxFileSize(long maxFileSize) {
+    protected void setMaxFileSize(long maxFileSize) {
         this.maxFileSize = maxFileSize;
-    }
-    public String getLogFormat() {
-        return logFormat;
-    }
-    public void setLogFormat(String logFormat) {
-        this.logFormat = logFormat;
     }
     public int getLogsCount() {
         return logsCount;
     }
-    public void setLogsCount(int logsCount) {
+    protected void setLogsCount(int logsCount) {
         this.logsCount = logsCount;
     }
 

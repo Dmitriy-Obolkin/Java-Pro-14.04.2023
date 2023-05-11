@@ -1,4 +1,7 @@
-package src.main.homeworks.hw9;
+package src.main.homeworks.hw9.logging.file;
+import src.main.homeworks.hw9.logging.Logger;
+import src.main.homeworks.hw9.logging.LoggingLevel;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +11,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class FileLogger {
+public class FileLogger implements Logger {
     private final FileLoggerConfiguration configuration;
 
 
@@ -24,27 +27,33 @@ public class FileLogger {
 
     2.Якщо активовано рівень DEBUG, то його також включається INFO, але не навпаки.
     */
-    public void debug(String message) throws FileMaxSizeReachedException, IOException {
-        if (configuration.getLoggingLevel() == LoggingLevel.DEBUG) {
+    @Override
+    public void info(String message) throws FileMaxSizeReachedException, IOException {
+        if (configuration.getLoggingLevel() == LoggingLevel.INFO || configuration.getLoggingLevel() == LoggingLevel.DEBUG) {
             log(configuration.getLoggingLevel().toString(), message);
         }
     }
-    public void info(String message) throws FileMaxSizeReachedException, IOException {
-        log(configuration.getLoggingLevel().toString(), message);
+    @Override
+    public void debug(String message) throws FileMaxSizeReachedException, IOException {
+        if (configuration.getLoggingLevel() == LoggingLevel.DEBUG){
+            log(configuration.getLoggingLevel().toString(), message);
+        }
     }
 
 
-    /*4. При виконанні методів debug та info врахувати максимально допустимий розмір файлу,
-    куди будуть записуватися логи.
-    При досягненні максимального розміру файлу або його перевищення, викинути виняток
-    FileMaxSizeReachedException з повідомленням максимального і поточного розміру файлу,
-    шляхи до файлу.
-    */
     private void log(String level, String message)
             throws FileMaxSizeReachedException, IOException {
         Path path = Paths.get(System.getProperty("user.dir")).resolve(configuration.getFilePath());
         long fileSize = Files.exists(path) ? Files.size(path) : 0;
 
+        /*Это решение не имеет смысла, тут нужно что-то одно, но в задании были посталены
+        * оба эти условия:
+        *   4. При досягненні максимального розміру файлу або його перевищення,
+        * викинути виняток FileMaxSizeReachedException з повідомленням максимального
+        * і поточного розміру файлу, шляхи до файлу.
+        *   6. ** При досягненні максимального розміру файлу або його перевищенні,
+        * створювати новий (додатковий) файл для зберігання . Ім'я кожного нового файлу
+        * має містити дату створення.*/
         try{
             if (fileSize >= configuration.getMaxFileSize()) {
                 throw new FileMaxSizeReachedException(
