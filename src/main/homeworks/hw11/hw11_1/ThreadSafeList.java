@@ -14,7 +14,7 @@ public class ThreadSafeList<T> {
         list.add(value);
     }
 
-    public synchronized  boolean remove(T value) throws IllegalArgumentException{
+    public synchronized boolean remove(T value) throws IllegalArgumentException{
         if(!list.remove(value)){
             throw new IllegalArgumentException("Failed to remove the item. Item not found.");
         }
