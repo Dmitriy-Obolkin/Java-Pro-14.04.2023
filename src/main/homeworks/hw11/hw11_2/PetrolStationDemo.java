@@ -10,6 +10,7 @@ public class PetrolStationDemo {
         Random random = new Random();
 
         int threadCount = random.nextInt(8) + 5; //кол-во запросов заправки
+        System.out.println(threadCount);
 
         for (int i = 0; i < threadCount; i++) {
             new Thread(() -> {
@@ -23,6 +24,5 @@ public class PetrolStationDemo {
             }).start();
         }
 
-        System.out.println(threadCount);
     }
 }

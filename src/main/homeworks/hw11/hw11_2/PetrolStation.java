@@ -19,26 +19,33 @@ public class PetrolStation {
 
     public void doRefuel(double fuel) throws InterruptedException{
         semaphore.acquire(); // получить 1 из 3 разрешение
-        locker.lock();  // Блокировать только одному потоку ту часть кода, где выполняется
-                        // сравнение и отнимание топлива.
+
         try{
+            locker.lock();  // Блокировать только одному потоку ту часть кода, где выполняется
+                            // сравнение и отнимание топлива.
             try{
                 if(fuel > amount){
                     System.out.printf("(%s) Not enough fuel. Requested: %.2f, " +
                             "available: %.2f.%n", Thread.currentThread().getName(), fuel, amount);
                     return;
                 }
-
-                amount -= fuel;
-                System.out.printf("(%s) Refueling started for: %.2f. Remaining fuel: %.2f.%n",
-                        Thread.currentThread().getName(), fuel, amount);
             } finally {
                 locker.unlock(); //Снять блокировку
             }
 
+            System.out.printf("(%s) Refueling started for: %.2f.%n",
+                    Thread.currentThread().getName(), fuel);
             Thread.sleep((random.nextInt(8) + 3) * 1000);
-            System.out.printf("(%s) Refueling finished.%n",
-                    Thread.currentThread().getName());
+
+            locker.lock();
+            try{
+                amount -= fuel;
+            } finally {
+                locker.unlock();
+            }
+
+            System.out.printf("(%s) Refueling finished. Remaining fuel: %.2f.%n",
+                    Thread.currentThread().getName(), amount);
 
         } finally {
             semaphore.release(); //освободить 1 разрешение
