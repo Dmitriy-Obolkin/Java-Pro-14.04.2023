@@ -1,10 +1,12 @@
 package src.main.homeworks.hw11.hw11_2;
 
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class PetrolStationDemo {
     public static void main(String[] args) {
-        PetrolStation station1 = new PetrolStation(500);
+        ReentrantLock locker = new ReentrantLock();
+        PetrolStation station1 = new PetrolStation(500, locker);
         Random random = new Random();
 
         int threadCount = random.nextInt(8) + 5; //кол-во запросов заправки
