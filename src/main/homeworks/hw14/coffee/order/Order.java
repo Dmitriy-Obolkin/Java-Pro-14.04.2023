@@ -1,8 +1,8 @@
 package src.main.homeworks.hw14.coffee.order;
 
 public class Order {
-    private int orderNumber;
-    private String customerName;
+    private final int orderNumber;
+    private final String customerName;
 
     public Order(int orderNumber, String customerName) {
         this.orderNumber = orderNumber;

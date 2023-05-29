@@ -54,10 +54,10 @@ public class CoffeeOrderBoard {
     про поточний стан черги у порядку найближчого до видачі замовлення.*/
     public void draw() {
         System.out.println("==============");
-        System.out.println(String.format("%-3s | %-10s", "Num", "Name"));
+        System.out.printf("%-3s | %-10s%n", "Num", "Name");
 
         for (Order order : queue) {
-            System.out.println(String.format("%-3s | %-10s", order.getOrderNumber(), order.getCustomerName()));
+            System.out.printf("%-3s | %-10s%n", order.getOrderNumber(), order.getCustomerName());
         }
     }
 
