@@ -3,9 +3,9 @@ package src.main.homeworks.hw13;
 /*1. Створити клас FileData. Клас представляє конкретний файл і складається з:
 ім'я файлу, розміру в байтах, шлях до файлу.*/
 public class FileData {
-    private String name;
-    private long size;
-    private String path;
+    private final String name;
+    private final long size;
+    private final String path;
 
     public FileData(String name, long size, String path) {
         this.name = name;

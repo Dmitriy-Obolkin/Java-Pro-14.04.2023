@@ -1,7 +1,5 @@
 package src.main.homeworks.hw13;
 
-import java.util.List;
-
 public class Demo {
     public static void main(String[] args) {
         FileNavigator fileNavigator = new FileNavigator();
