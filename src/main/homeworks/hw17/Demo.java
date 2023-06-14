@@ -1,6 +1,9 @@
 package src.main.homeworks.hw17;
 
 import src.main.homeworks.hw15.Student;
+import src.main.homeworks.hw17.FruitBoxes.Apple;
+import src.main.homeworks.hw17.FruitBoxes.Box;
+import src.main.homeworks.hw17.FruitBoxes.Orange;
 
 import java.util.List;
 
@@ -24,10 +27,35 @@ public class Demo {
         List<Student> studentsList = MyCollectionUtils.toList(studentsArray);
 
         System.out.println("Students list: " + studentsList);
+        System.out.println();
 
 
 
+        //FRUIT:
 
+        Box<Apple> appleBox = new Box<>();
+        appleBox.addFruit(new Apple());
+        appleBox.addFruit(new Apple(), 6);
+
+        Box<Orange> orangeBox = new Box<>();
+        orangeBox.addFruit(new Orange(), 4);
+
+        System.out.println("Weight of appleBox: " + appleBox.getWeight());
+        System.out.println("Weight of orangeBox: " + orangeBox.getWeight());
+
+
+        System.out.println("appleBox weight equal to orangeBox weight: " + appleBox.compare(orangeBox));
+
+        Box<Apple> appleBox2 = new Box<>();
+        appleBox2.addFruit(new Apple(), 6);
+        System.out.println("Weight of appleBox2: " + appleBox2.getWeight());
+        System.out.println("orangeBox weight equal to appleBox2 weight: " + orangeBox.compare(appleBox2));
+
+
+        System.out.println("\nMerging appleBox2 with a appleBox:");
+        appleBox.merge(appleBox2);
+        System.out.println("Weight of appleBox: " + appleBox.getWeight());
+        System.out.println("Weight of appleBox2: " + appleBox2.getWeight());
 
     }
 }
