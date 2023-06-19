@@ -1,20 +1,25 @@
 package src.main.homeworks.hw18;
 
+import java.time.LocalDate;
+
 public class Product {
     private final String type;
     private double price;
     private final boolean discountAvailable;
+    private final LocalDate dateAdded;
 
-    public Product(String type, double price, boolean discountAvailable){
+    public Product(String type, double price, boolean discountAvailable, LocalDate dateAdded){
         this.type = type;
         this.price = price;
         this.discountAvailable = discountAvailable;
+        this.dateAdded = dateAdded;
     }
 
     public Product(Product otherProduct){
         this.type = otherProduct.getType();
         this.price= otherProduct.getPrice();
         this.discountAvailable = otherProduct.isDiscountAvailable();
+        this.dateAdded = otherProduct.getDateAdded();
     }
 
     public String getType() {
@@ -27,6 +32,10 @@ public class Product {
 
     public boolean isDiscountAvailable() {
         return discountAvailable;
+    }
+
+    public LocalDate getDateAdded() {
+        return dateAdded;
     }
 
     private void setPrice(double newPrice){
@@ -50,7 +59,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Type: " + this.getType() + ", Price: " + this.getPrice();
+        return "Type: " + this.getType() + ", Price: " + this.getPrice()
+                + ", Discount Available: " + this.isDiscountAvailable()
+                + ", Date Added: " + this.getDateAdded();
     }
 }
 
