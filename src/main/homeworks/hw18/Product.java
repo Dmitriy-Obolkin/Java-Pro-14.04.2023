@@ -11,6 +11,12 @@ public class Product {
         this.discountAvailable = discountAvailable;
     }
 
+    public Product(Product otherProduct){
+        this.type = otherProduct.getType();
+        this.price= otherProduct.getPrice();
+        this.discountAvailable = otherProduct.isDiscountAvailable();
+    }
+
     public String getType() {
         return type;
     }

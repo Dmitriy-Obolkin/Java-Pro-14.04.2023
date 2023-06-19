@@ -1,7 +1,9 @@
 package src.main.homeworks.hw18;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Demo {
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Demo {
 
         products.add(new Product("Apple", 100, true));
         products.add(new Product("Banana", 50, true));
-        products.add(new Product("Book", 80, false));
+        products.add(new Product("Book", 140, false));
         products.add(new Product("Tea", 200, false));
         products.add(new Product("Book", 400, false));
         products.add(new Product("Apple", 105, false));
@@ -25,7 +27,7 @@ public class Demo {
         products.add(new Product("Apple", 95, false));
         products.add(new Product("Banana", 55, true));
         products.add(new Product("Apple", 20, false));
-        products.add(new Product("Book", 140, true));
+        products.add(new Product("Book", 80, true));
         products.add(new Product("Book", 350, true));
 
         System.out.println("All products: ");
@@ -45,12 +47,17 @@ public class Demo {
         System.out.println("\nBooks with the possibility of applying a discount and the new price of -10%: ");
         List<Product> books2 = products.stream()
                 .filter(product -> product.getType().equalsIgnoreCase("book"))
-                .filter(book -> book.isDiscountAvailable())
-                .peek((book) -> book.applyDiscount(10))
+                .filter(Product::isDiscountAvailable)
+                .map(product -> new Product(product))
+                .peek(book -> book.applyDiscount(10))
                 .peek(System.out::println)
                 .toList();
 
-        System.out.println("\n");
-
+        //3.2, 3.3
+        Product bookWithMinPrice = products.stream()
+                .filter(product -> product.getType().equalsIgnoreCase("book"))
+                .min(Comparator.comparing(Product::getPrice))
+                .orElseThrow(() -> new NoSuchElementException("Product [Type: book] not found"));
+        System.out.print("\nThe book with the min price: \n" + bookWithMinPrice);
     }
 }
