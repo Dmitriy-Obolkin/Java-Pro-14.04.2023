@@ -3,12 +3,14 @@ package src.main.homeworks.hw18;
 import java.time.LocalDate;
 
 public class Product {
+    private final int id;
     private final String type;
     private double price;
     private final boolean discountAvailable;
     private final LocalDate dateAdded;
 
-    public Product(String type, double price, boolean discountAvailable, LocalDate dateAdded){
+    public Product(int id, String type, double price, boolean discountAvailable, LocalDate dateAdded){
+        this.id = id;
         this.type = type;
         this.price = price;
         this.discountAvailable = discountAvailable;
@@ -16,6 +18,7 @@ public class Product {
     }
 
     public Product(Product otherProduct){
+        this.id = otherProduct.getId();
         this.type = otherProduct.getType();
         this.price= otherProduct.getPrice();
         this.discountAvailable = otherProduct.isDiscountAvailable();
@@ -36,6 +39,10 @@ public class Product {
 
     public LocalDate getDateAdded() {
         return dateAdded;
+    }
+
+    public int getId() {
+        return id;
     }
 
     private void setPrice(double newPrice){
