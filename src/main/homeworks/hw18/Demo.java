@@ -12,7 +12,7 @@ public class Demo {
 
         products.add(new Product(1,"Apple", 100, true, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(2, "Banana", 50, true, LocalDate.now().minusDays(rand.nextInt(21))));
-        products.add(new Product(3,"Book", 140, false, LocalDate.now().minusDays(rand.nextInt(372))));
+        products.add(new Product(3,"Book", 140, false, LocalDate.now().minusDays(372)));
         products.add(new Product(4,"Tea", 200, false, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(5,"Book", 400, false, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(6,"Apple", 105, false, LocalDate.now().minusDays(rand.nextInt(21))));
@@ -21,7 +21,7 @@ public class Demo {
         products.add(new Product(9,"Tea", 250, true, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(10,"Book", 75, true, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(11,"Banana", 70, false, LocalDate.now().minusDays(rand.nextInt(21))));
-        products.add(new Product(12,"Book", 60, true, LocalDate.now().minusDays(rand.nextInt(380))));
+        products.add(new Product(12,"Book", 60, true, LocalDate.now().minusDays(380)));
         products.add(new Product(13,"Cheese", 30, false, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(14,"Tea", 130, false, LocalDate.now().minusDays(rand.nextInt(21))));
         products.add(new Product(15,"Coffee", 250, true, LocalDate.now().minusDays(rand.nextInt(21))));
