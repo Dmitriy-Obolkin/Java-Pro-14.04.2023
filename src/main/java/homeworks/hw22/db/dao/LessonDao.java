@@ -2,7 +2,6 @@ package homeworks.hw22.db.dao;
 
 import homeworks.hw22.db.model.Lesson;
 
-import java.sql.Connection;
 import java.util.List;
 
 public interface LessonDao {
