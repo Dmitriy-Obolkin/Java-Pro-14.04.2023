@@ -48,6 +48,7 @@ public class MyShakerSort {
 
 
     // region ShakerSort generics
+    @SafeVarargs
     public static <T extends Comparable<T>> void shakerSort(T ... arr){
         if(arr.length < 2 ){
             throw new IllegalArgumentException("Incorrect array");
