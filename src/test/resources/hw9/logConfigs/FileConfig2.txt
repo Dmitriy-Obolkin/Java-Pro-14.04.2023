@@ -1,0 +1,4 @@
+FILE: src/test/resources/hw9/logs2
+LEVEL: INFO
+MAX-SIZE: 500
+FORMAT: [%s] %s - %s
