@@ -1,7 +1,5 @@
 package main.java.ua.ithillel.testRunner;
 
-import java.util.Date;
-
 public class TestResult {
     private final int totalTests;
     private final int passedTests;

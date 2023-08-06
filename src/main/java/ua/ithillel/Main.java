@@ -3,6 +3,7 @@ package main.java.ua.ithillel;
 import main.java.ua.ithillel.testRunner.OutputType;
 import main.java.ua.ithillel.testRunner.ProjectTestRunner;
 import main.java.ua.ithillel.testRunner.TestResultParser;
+import test.java.ua.ithillel.ArrayUtilsTest;
 import test.java.ua.ithillel.SimpleMathLibraryTest;
 
 import java.io.File;
@@ -39,6 +40,12 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+
+        System.out.println();
+        projectTestRunner.changeOutputType(OutputType.CONSOLE);
+        projectTestRunner.runTestByClass(ArrayUtilsTest.class);
 
     }
 }

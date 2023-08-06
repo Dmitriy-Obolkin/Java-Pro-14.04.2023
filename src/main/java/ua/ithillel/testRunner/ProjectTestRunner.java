@@ -19,19 +19,18 @@ public class ProjectTestRunner {
 
     public void changeOutputType(OutputType outputType){
         switch (outputType) {
-            case FILE:
+            case FILE -> {
                 try {
                     printWriter = new PrintWriter(new FileWriter("src/test/resources/testResults/results.txt"));
                     printErrWriter = new PrintWriter(new FileWriter("src/test/resources/testResults/errors.txt"));
                 } catch (IOException e) {
                     throw new RuntimeException("Error opening a file for writing ", e);
                 }
-                break;
-            case CONSOLE:
-            default:
+            }
+            default -> {
                 printWriter = new PrintWriter(new OutputStreamWriter(System.out));
                 printErrWriter = new PrintWriter(new OutputStreamWriter(System.err));
-                break;
+            }
         }
         this.outputType = outputType;
     }

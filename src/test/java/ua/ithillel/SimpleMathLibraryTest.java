@@ -29,7 +29,7 @@ public class SimpleMathLibraryTest {
         double a = 10;
         double b = 5;
 
-        double expectedValue = 15;
+        double expectedValue = 5;
 
         double actualValue = SimpleMathLibrary.minus(a, b);
 
