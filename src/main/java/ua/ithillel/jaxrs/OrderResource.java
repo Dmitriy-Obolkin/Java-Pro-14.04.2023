@@ -11,7 +11,7 @@ import ua.ithillel.jaxrs.repository.OrderRepository;
 import java.util.List;
 
 @ApplicationScoped
-@Path("orders")
+@Path("orders") // http://localhost:8080/orders
 public class OrderResource {
     @Inject
     private OrderRepository orderRepository;
